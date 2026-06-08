@@ -1,0 +1,13 @@
+{
+  "name": "gitcommit-ai-gemini",
+  "version": "1.0.0",
+  "type": "module",
+  "bin": {
+    "gitcommit": "./bin/gitcommit.js"
+  },
+  "dependencies": {
+    "@google/genai": "^1.0.0",
+    "dotenv": "^16.5.0",
+    "ora": "^8.0.1"
+  }
+}
