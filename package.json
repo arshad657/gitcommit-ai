@@ -1,13 +1,29 @@
 {
-  "name": "gitcommit-ai-gemini",
-  "version": "1.0.0",
+  "name": "@arshad657/gitcommit-ai",
+  "version": "1.0.1",
+  "description": "An AI-powered Git commit message generator CLI tool.",
+  "author": "Arshad Almas",
   "type": "module",
   "bin": {
     "gitcommit": "./bin/gitcommit.js"
   },
-  "dependencies": {
-    "@google/genai": "^1.0.0",
-    "dotenv": "^16.5.0",
-    "ora": "^8.0.1"
-  }
+  "main": "index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arshad657/gitcommit-ai.git"
+  },
+  "homepage": "https://github.com/arshad657/gitcommit-ai#readme",
+  "bugs": {
+    "url": "https://github.com/arshad657/gitcommit-ai/issues"
+  },
+  "keywords": [
+    "git",
+    "commit",
+    "ai",
+    "cli",
+    "automation"
+  ]
 }

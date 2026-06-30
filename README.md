@@ -4,9 +4,9 @@
 
 Generate meaningful commit messages directly from your staged Git changes and automatically create commits using your own API key.
 
-![npm](https://img.shields.io/npm/v/gitcommit-ai)
-![license](https://img.shields.io/github/license/gitcommit-ai/gitcommit-ai)
-![downloads](https://img.shields.io/npm/dm/gitcommit-ai)
+![npm](https://img.shields.io/npm/v/@arshad657/gitcommit-ai)
+![license](https://img.shields.io/github/license/@arshad657/gitcommit-ai/@arshad657/gitcommit-ai)
+![downloads](https://img.shields.io/npm/dm/@arshad657/gitcommit-ai)
 
 ---
 
@@ -29,7 +29,7 @@ Generate meaningful commit messages directly from your staged Git changes and au
 ### Global Installation
 
 ```bash
-npm install -g gitcommit-ai
+npm install -g @arshad657/gitcommit-ai
 ```
 
 ### Verify Installation
@@ -200,7 +200,7 @@ GitCommit AI:
 Contributions are welcome.
 
 ```bash
-git clone https://github.com/gitcommit-ai/gitcommit-ai.git
+git clone https://github.com/@arshad657/gitcommit-ai/@arshad657/gitcommit-ai.git
 ```
 
 Create a feature branch:
