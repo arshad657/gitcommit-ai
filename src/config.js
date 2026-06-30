@@ -1,6 +1,7 @@
 import dotenv from "dotenv";
 import path from "path";
 import { fileURLToPath } from "url";
+import { loadConfig } from "./storage.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -11,8 +12,9 @@ dotenv.config({
 });
 
 export function getConfig() {
+  const savedConfig = loadConfig() || {};
   return {
-    apiKey: process.env.GEMINI_API_KEY,
-    model: "gemini-2.5-flash",
+    apiKey: savedConfig.apiKey || process.env.GEMINI_API_KEY,
+    model: savedConfig.model || "gemini-2.5-flash",
   };
 }
