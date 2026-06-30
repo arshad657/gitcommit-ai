@@ -1,6 +1,6 @@
 {
   "name": "@arshad657/gitcommit-ai",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "An AI-powered Git commit message generator CLI tool.",
   "author": "Arshad Almas",
   "type": "module",
@@ -25,5 +25,10 @@
     "ai",
     "cli",
     "automation"
-  ]
+  ],
+  "dependencies": {
+    "@google/genai": "^2.10.0",
+    "dotenv": "^17.4.2",
+    "ora": "^9.4.1"
+  }
 }
