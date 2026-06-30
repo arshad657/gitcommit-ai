@@ -78,7 +78,47 @@ async function run() {
     console.log(message);
   } catch (err) {
     aiSpinner.fail("Failed to generate commit message.");
-    console.error(err.message);
+    
+    let errorMsg = err?.message || String(err);
+    let isModelError = false;
+    let isAuthError = false;
+
+    try {
+      // The @google/genai SDK often wraps errors in a JSON string
+      const parsed = JSON.parse(errorMsg);
+      if (parsed.error) {
+        errorMsg = parsed.error.message;
+        if (parsed.error.status === "NOT_FOUND" || parsed.error.code === 404) {
+          isModelError = true;
+        }
+        if (parsed.error.status === "INVALID_ARGUMENT" || parsed.error.code === 400 || parsed.error.status === "UNAUTHENTICATED" || parsed.error.code === 401) {
+          if (errorMsg.toLowerCase().includes("key")) {
+            isAuthError = true;
+          }
+        }
+      }
+    } catch (_) {
+      // Fallback to text matching if not JSON
+      if (errorMsg.includes("not found") || errorMsg.includes("ModelService.ListModels")) {
+        isModelError = true;
+      }
+      if (errorMsg.toLowerCase().includes("api key") || errorMsg.toLowerCase().includes("key not valid")) {
+        isAuthError = true;
+      }
+    }
+
+    console.error(`\n❌ Error: ${errorMsg}`);
+
+    if (isModelError) {
+      console.error("\n💡 Tip: The configured model might not be supported by your API key or region.");
+      console.error("   - Run `gitcommit init` to configure a new API key and model.");
+      console.error("   - Or override the model on the fly, for example:\n");
+      console.error("     gitcommit --model gemini-2.5-flash\n");
+    } else if (isAuthError) {
+      console.error("\n💡 Tip: Your API key appears to be invalid or expired.");
+      console.error("   - Run `gitcommit init` to re-enter a valid Gemini API key.\n");
+    }
+
     process.exit(1);
   }
 }
