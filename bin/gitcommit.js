@@ -20,7 +20,7 @@ function init() {
   rl.question("Enter Gemini API Key: ", (key) => {
     saveConfig({
       apiKey: key,
-      model: "gemini-1.5-flash-002",
+      model: "gemini-2.5-flash",
     });
 
     console.log("✔ Config saved globally");
@@ -39,6 +39,12 @@ async function run() {
 
   const includeBody = args.includes("--body");
 
+  let modelOverride = null;
+  const modelIdx = args.indexOf("--model");
+  if (modelIdx !== -1 && modelIdx + 1 < args.length) {
+    modelOverride = args[modelIdx + 1];
+  }
+
   const spinner = ora("Checking staged changes...").start();
 
   const diff = getStagedDiff();
@@ -54,6 +60,9 @@ async function run() {
 
   try {
     const config = getConfig();
+    if (modelOverride) {
+      config.model = modelOverride;
+    }
 
     const prompt = buildPrompt(diff, includeBody);
 

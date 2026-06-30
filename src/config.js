@@ -13,8 +13,12 @@ dotenv.config({
 
 export function getConfig() {
   const savedConfig = loadConfig() || {};
+  let model = savedConfig.model || "gemini-2.5-flash";
+  if (model === "gemini-1.5-flash-002") {
+    model = "gemini-2.5-flash";
+  }
   return {
     apiKey: savedConfig.apiKey || process.env.GEMINI_API_KEY,
-    model: savedConfig.model || "gemini-2.5-flash",
+    model,
   };
 }
